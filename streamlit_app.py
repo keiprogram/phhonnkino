@@ -17,7 +17,7 @@ def load_data():
 
 words_df = load_data()
 
-集
+
 if st.button('ガチャを引く！'):
     rarity_probs = {
         'N': 0.4,
