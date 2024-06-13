@@ -16,7 +16,7 @@ st.write('がんばってください！')
 def load_data():
     return pd.read_excel("物理公式集.xlsx")
 
-words_df = load_data()
+words_df = load_data(),openpyxl # type: ignore
 
 
 if st.button('ガチャを引く！'):
