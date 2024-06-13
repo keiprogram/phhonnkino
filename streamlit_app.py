@@ -2,30 +2,28 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-# ページ設定
 st.set_page_config(page_title="物理用語ガチャ")
 
 # タイトルと説明
 st.title('物理用語ガチャ')
+
 st.write('物理の用語をランダムに表示して、勉強をサポートします！')
 st.write('がんばってください！')
 
-# データの読み込み関数
-@st.cache_data
+# Load the data
+@st.cache
 def load_data():
-    file_path = '/mnt/data/物理公式集.xlsx'  # アップロードされたファイルのパス
-    return pd.read_excel(file_path)
+    return pd.read_excel("物理用語リスト.xlsx")
 
-# データを読み込む
 words_df = load_data()
 
 # ガチャ機能
 if st.button('ガチャを引く！'):
     rarity_probs = {
-        '一般用語': 0.4,
-        '専門用語': 0.3,
-        '専門用語（難）': 0.2,
-        '専門用語（超難）': 0.1
+        'N': 0.4,
+        'R': 0.3,
+        'SR': 0.2,
+        'SSR': 0.1
     }
     chosen_rarity = np.random.choice(list(rarity_probs.keys()), p=list(rarity_probs.values()))
     subset_df = words_df[words_df['レア度'] == chosen_rarity]
@@ -35,7 +33,6 @@ if st.button('ガチャを引く！'):
     st.session_state.selected_word = selected_word
     st.session_state.display_meaning = False
 
-# 選択された単語を表示
 if 'selected_word' in st.session_state:
     st.header(f"用語名: {st.session_state.selected_word['用語']}")
     st.subheader(f"レア度: {st.session_state.selected_word['レア度']}")
@@ -46,3 +43,4 @@ if 'selected_word' in st.session_state:
 
     if st.session_state.display_meaning:
         st.write(f"意味: {st.session_state.selected_word['意味']}")
+
