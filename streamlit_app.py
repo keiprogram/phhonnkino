@@ -19,6 +19,10 @@ st.markdown(
     <style>
     .centered-title {
         text-align: center;
+        color: #ACB6E5;//非対応のブラウザでの文字色を設定
+  background: -webkit-linear-gradient(0deg, #ACB6E5, #86FDE8);//背景色にグラデーションを指定
+  -webkit-background-clip: text;//テキストでくり抜く
+  -webkit-text-fill-color: transparent;//くり抜いた部分は背景を表示
     }
     </style>
     """,
@@ -26,7 +30,7 @@ st.markdown(
 )
 
 # 中央揃えスタイルを適用したタイトル
-st.markdown('<h1 class="centered-title">$高校物理用語ガチャ$</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="centered-title">高校物理用語ガチャ</h1>', unsafe_allow_html=True)
 
 # その他の説明
 st.write('物理用語をランダムに表示して、勉強をサポートします！')
