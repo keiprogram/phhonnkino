@@ -7,13 +7,13 @@ st.set_page_config(page_title="物理用語ガチャ")
 # タイトルと説明
 st.title('物理用語ガチャ')
 
-st.write('物理の用語をランダムに表示して、勉強をサポートします！')
+st.write('物理用語をランダムに表示して、勉強をサポートします！')
 st.write('がんばってください！')
 
 # Load the data
 @st.cache
 def load_data():
-    return pd.read_excel("物理用語リスト.xlsx")
+    return pd.read_excel("物理公式集.xlsx")
 
 words_df = load_data()
 
@@ -26,7 +26,7 @@ if st.button('ガチャを引く！'):
         'SSR': 0.1
     }
     chosen_rarity = np.random.choice(list(rarity_probs.keys()), p=list(rarity_probs.values()))
-    subset_df = words_df[words_df['レア度'] == chosen_rarity]
+    subset_df = words_df[words_df['難易度'] == chosen_rarity]
     selected_word = subset_df.sample().iloc[0]
     
     # セッションステートに選択された単語を保存
@@ -42,5 +42,4 @@ if 'selected_word' in st.session_state:
         st.session_state.display_meaning = True
 
     if st.session_state.display_meaning:
-        st.write(f"意味: {st.session_state.selected_word['意味']}")
-
+        st.write(f"用語の意味: {st.session_state.selected_word['用語の意味']}")
