@@ -9,6 +9,7 @@ st.title('$高校物理用語ガチャ$')
 st.write('物理用語をランダムに表示して、勉強をサポートします！')
 st.write('範囲は高校で習う物理用語です')
 st.write('がんばってください！')
+st.write("Enterキーでリトライ!")
 
 # Load the data
 @st.cache_data
@@ -18,7 +19,7 @@ def load_data():
 words_df = load_data()
 
 # ガチャ機能
-center_button = st.columns([3, 1, 3])[1]
+
 if st.button('ガチャを引く！'):
     rarity_probs = {
         'N': 0.4,
