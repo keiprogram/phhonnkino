@@ -35,7 +35,7 @@ if st.button('ガチャを引く！'):
 
 if 'selected_word' in st.session_state:
     st.header(f"用語名: {st.session_state.selected_word['用語']}")
-    st.subheader(f"レア度: {st.session_state.selected_word['レア度']}")
+    st.subheader(f"難易度: {st.session_state.selected_word['難易度']}")
 
     # 意味を確認するボタンを追加
     if st.button('意味を確認する'):
