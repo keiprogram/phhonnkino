@@ -5,6 +5,7 @@ import numpy as np
 st.set_page_config(page_title="物理用語ガチャ")
 
 # タイトルと説明
+st.title('$高校物理用語ガチャ$')
 st.write('物理用語をランダムに表示して、勉強をサポートします！')
 st.write('範囲は高校で習う物理用語です')
 st.write('がんばってください！')
