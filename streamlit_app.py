@@ -20,17 +20,15 @@ st.markdown(
     .centered-title {
         text-align: center;
         color:#27bdce;
+        animation-name: increase-size;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
     }
-    @keyframes grow {
-        0% {
-            transform: scale(1);
-        }
-        100% {
-            transform: scale(1.1);
-        }
-    }
-    .animate-grow {
-        animation: grow 0.5s ease-in-out both;
+    @keyframes increase-size {
+        0% { font-size: 24px; }
+        50% { font-size: 28px; }
+        100% { font-size: 24px; }
     }
     </style>
     """,
@@ -76,11 +74,9 @@ if st.button('ガチャを引く！'):
     st.session_state.display_meaning = False
     st.session_state.quiz_answered = False
 
-    # アニメーションクラスを追加して要素を拡大する
-    st.markdown('<style>.animate-grow { animation: grow 0.5s ease-in-out both; }</style>', unsafe_allow_html=True)
-
 if 'selected_word' in st.session_state:
     st.header(f"用語名: {st.session_state.selected_word['用語']}")
+    st.subheader(f"難易度: {st.session_state.selected_word['難易度']}")
 
     # クイズを表示
     st.write("この用語の意味はどれでしょう？")
@@ -96,6 +92,3 @@ if 'selected_word' in st.session_state:
         else:
             st.error("不正解です。", icon="❌")
         st.write(f"正しい意味: {st.session_state.correct_answer}")
-
-    # 要素にアニメーションクラスを適用
-    st.markdown('<h3 class="animate-grow">{}</h3>'.format(st.session_state.selected_word['用語の意味']), unsafe_allow_html=True)
