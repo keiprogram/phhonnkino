@@ -18,6 +18,7 @@ def load_data():
 words_df = load_data()
 
 # ガチャ機能
+center_button = st.columns([3, 1, 3])[1]
 if st.button('ガチャを引く！'):
     rarity_probs = {
         'N': 0.4,
@@ -55,9 +56,10 @@ if 'selected_word' in st.session_state:
 
     if st.session_state.quiz_answered:
         if st.session_state.selected_choice == st.session_state.correct_answer:
-            st.success("正解です！")
+             st.success("正解です！", icon="✅")
         else:
-            st.error("不正解です。")
+            st.error("不正解です。", icon="❌")
+
         st.write(f"正しい意味: {st.session_state.correct_answer}")
 
     
