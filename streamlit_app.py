@@ -60,8 +60,5 @@ if 'selected_word' in st.session_state:
             st.error("不正解です。")
         st.write(f"正しい意味: {st.session_state.correct_answer}")
 
-    # 意味を確認するボタンを追加
-    if st.button('意味を確認する'):
-        st.session_state.display_meaning = True
-
+    
    
