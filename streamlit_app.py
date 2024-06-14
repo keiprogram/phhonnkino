@@ -64,5 +64,4 @@ if 'selected_word' in st.session_state:
     if st.button('意味を確認する'):
         st.session_state.display_meaning = True
 
-    if st.session_state.display_meaning:
-        st.write(f"用語の意味: {st.session_state.selected_word['用語の意味']}")
+   
