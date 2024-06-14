@@ -19,10 +19,7 @@ st.markdown(
     <style>
     .centered-title {
         text-align: center;
-        color: #ACB6E5;//非対応のブラウザでの文字色を設定
-  background: -webkit-linear-gradient(0deg, #ACB6E5, #86FDE8);//背景色にグラデーションを指定
-  -webkit-background-clip: text;//テキストでくり抜く
-  -webkit-text-fill-color: transparent;//くり抜いた部分は背景を表示
+        color:#27bece;
     }
     </style>
     """,
