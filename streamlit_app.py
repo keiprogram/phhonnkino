@@ -19,7 +19,7 @@ st.markdown(
     <style>
     .centered-title {
         text-align: center;
-        color:#27bdce;
+        color:#0D5661;
     }
     </style>
     """,
