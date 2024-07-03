@@ -20,10 +20,7 @@ st.markdown(
     .centered-title {
         text-align: center;
         color:#27bdce;
-        animation-name: increase-size;
-        animation-duration: 1s;
-        animation-timing-function: ease-in-out;
-        animation-iteration-count: infinite;
+        
     }
     @keyframes increase-size {
         0% { font-size: 24px; }
