@@ -7,12 +7,16 @@ st.set_page_config(page_title="物理用語ガチャ")
 # GIFのURLを指定
 background_gif_url = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnA1bnhwMHQ1M2xjYnAyYXJlNnFqOWZub3Z4aXZ0dHJkbndnM204bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarwBWrq3CBqqs5G/giphy.gif"
 
-
-
-# GIFをタイトルの上に挿入し、角を丸めるCSSスタイルを適用
-gif_url = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVpOTVqb2Mwcm45cW9qbjdlcjRvZGdrYWh3N21ieGdpMm1wamFkcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IPbS5R4fSUl5S/giphy.gif"
+# CSSを使用して背景をGIFに設定
 st.markdown(
-    f'<img src="{gif_url}" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);" width="100%">',
+    f"""
+ {{
+        background: url("{background_gif_url}") no-repeat center center fixed;
+        ba    <style>
+    .stAppckground-size: cover;
+    }}
+    </style>
+    """,
     unsafe_allow_html=True
 )
 
