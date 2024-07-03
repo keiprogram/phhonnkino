@@ -7,11 +7,7 @@ st.set_page_config(page_title="物理用語ガチャ")
 # GIFのURLを指定
 gif_url = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVpOTVqb2Mwcm45cW9qbjdlcjRvZGdrYWh3N21ieGdpMm1wamFkcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IPbS5R4fSUl5S/giphy.gif"
 
-# GIFをタイトルの上に挿入し、角を丸めるCSSスタイルを適用
-st.markdown(
-    f'<img src="{gif_url}" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);" width="100%">',
-    unsafe_allow_html=True
-)
+
 
 # CSSを使用してタイトルを中央揃えにするスタイルを適用する
 st.markdown(
