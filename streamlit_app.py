@@ -7,20 +7,26 @@ st.set_page_config(page_title="物理用語ガチャ")
 # GIFのURLを指定
 background_gif_url = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnA1bnhwMHQ1M2xjYnAyYXJlNnFqOWZub3Z4aXZ0dHJkbndnM204bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarwBWrq3CBqqs5G/giphy.gif"
 
-# CSSを使用して背景をGIFに設定
+# CSSを使用して背景をGIFに設定し、白色のぼかしを追加
 st.markdown(
     f"""
     <style>
     .stApp {{
         background: url("{background_gif_url}") no-repeat center center fixed;
         background-size: cover;
+        filter: blur(5px) brightness(0.7);
     }}
     </style>
     """,
     unsafe_allow_html=True
 )
 
-
+# GIFをタイトルの上に挿入し、角を丸めるCSSスタイルを適用
+gif_url = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVpOTVqb2Mwcm45cW9qbjdlcjRvZGdrYWh3N21ieGdpMm1wamFkcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IPbS5R4fSUl5S/giphy.gif"
+st.markdown(
+    f'<img src="{gif_url}" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);" width="100%">',
+    unsafe_allow_html=True
+)
 
 # CSSを使用してタイトルを中央揃えにするスタイルを適用する
 st.markdown(
