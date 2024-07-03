@@ -20,12 +20,6 @@ st.markdown(
     .centered-title {
         text-align: center;
         color:#27bdce;
-        
-    }
-    @keyframes increase-size {
-        0% { font-size: 24px; }
-        50% { font-size: 28px; }
-        100% { font-size: 24px; }
     }
     </style>
     """,
