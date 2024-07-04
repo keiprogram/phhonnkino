@@ -7,15 +7,16 @@ st.set_page_config(page_title="物理用語ガチャ")
 # GIFのURLを指定
 gif_url = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVpOTVqb2Mwcm45cW9qbjdlcjRvZGdrYWh3N21ieGdpMm1wamFkcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IPbS5R4fSUl5S/giphy.gif"
 
-
-
-# CSSを使用してタイトルを中央揃えにするスタイルを適用する
+# CSSを使用してタイトルを中央揃えにするスタイルを適用し、背景色を変更する
 st.markdown(
     """
     <style>
     .centered-title {
         text-align: center;
         color:#0D5661;
+    }
+    .stApp {
+        background-color: #FCFAF2;
     }
     </style>
     """,
