@@ -13,7 +13,7 @@ st.markdown(
     <style>
     .centered-title {
         text-align: center;
-        color:#0D5661;
+        color:#3A8FB7;
     }
     .stApp {
         background-color: #FCFAF2;
