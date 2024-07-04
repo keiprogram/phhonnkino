@@ -13,13 +13,15 @@ st.markdown(
     <style>
     .centered-title {
         text-align: center;
-        color:#3A8FB7;
+        color:#0D5661;
     }
     .stApp {
-        background-color: #abced8;
+        background-color: #FCFAF2;
     }
-    st.write{
-    color:#FCFAF2    
+    .circular-image {
+        clip-path: circle(50% at 50% 50%);
+        width: 200px; /* 必要に応じてサイズを調整 */
+        height: 200px; /* 必要に応じてサイズを調整 */
     }
     </style>
     """,
@@ -28,6 +30,9 @@ st.markdown(
 
 # 中央揃えスタイルを適用したタイトル
 st.markdown('<h1 class="centered-title">高校物理用語ガチャ</h1>', unsafe_allow_html=True)
+
+# GIFを表示
+st.markdown(f'<img src="{gif_url}" class="circular-image">', unsafe_allow_html=True)
 
 # その他の説明
 st.write('物理用語をランダムに表示して、勉強をサポートします！')
