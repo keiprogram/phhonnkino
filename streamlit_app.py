@@ -18,6 +18,9 @@ st.markdown(
     .stApp {
         background-color: #abced8;
     }
+    st.write{
+    color:#FCFAF2    
+    }
     </style>
     """,
     unsafe_allow_html=True
