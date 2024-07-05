@@ -4,8 +4,7 @@ import numpy as np
 
 st.set_page_config(page_title="物理用語ガチャ")
 
-# GIFのURLを指定
-gif_url = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVpOTVqb2Mwcm45cW9qbjdlcjRvZGdrYWh3N21ieGdpMm1wamFkcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IPbS5R4fSUl5S/giphy.gif"
+
 
 # CSSを使用してタイトルを中央揃えにするスタイルを適用し、背景色を変更する
 st.markdown(
@@ -18,11 +17,7 @@ st.markdown(
     .stApp {
         background-color: #FCFAF2;
     }
-    .circular-image {
-        clip-path: circle(50% at 50% 50%);
-        width: 200px; /* 必要に応じてサイズを調整 */
-        height: 200px; /* 必要に応じてサイズを調整 */
-    }
+   
     </style>
     """,
     unsafe_allow_html=True
