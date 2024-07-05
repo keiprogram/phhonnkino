@@ -24,7 +24,7 @@ st.markdown(
         background-image: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDJ1MmoyejJ3bzQwNTJ0bDdmaGJhNTNwNHJlNjg4aTF6M3MyMWhxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarwBWrq3CBqqs5G/giphy.gif');
         background-size: cover;
         background-position: center;
-        height: 100vh;
+        height: 80vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
