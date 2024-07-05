@@ -4,8 +4,6 @@ import numpy as np
 
 st.set_page_config(page_title="物理用語ガチャ")
 
-
-
 # CSSを使用してタイトルを中央揃えにするスタイルを適用し、背景色を変更する
 st.markdown(
     """
@@ -16,17 +14,28 @@ st.markdown(
     }
     .stApp {
         background-color: #FCFAF2;
+        position: relative;
     }
-   
+    .white-circle {
+        clip-path: circle(50% at 50% 50%);
+        background-color: white;
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
     </style>
     """,
     unsafe_allow_html=True
 )
 
+# 白い円形の背景を設定
+st.markdown('<div class="white-circle"></div>', unsafe_allow_html=True)
+
 # 中央揃えスタイルを適用したタイトル
 st.markdown('<h1 class="centered-title">高校物理用語ガチャ</h1>', unsafe_allow_html=True)
-
-
 
 # その他の説明
 st.write('物理用語をランダムに表示して、勉強をサポートします！')
