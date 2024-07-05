@@ -13,6 +13,11 @@ st.markdown(
         text-align: center;
         color:#0D5661;
     }
+    .centered-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
     .stApp {
         background-color: #FCFAF2;
     }
@@ -49,8 +54,11 @@ if 'incorrect_count' not in st.session_state:
 # スタート待機画面
 if not st.session_state.started:
     st.markdown('<h2 class="centered-title">スタートボタンを押して始めてください</h2>', unsafe_allow_html=True)
-    if st.button('スタート'):
-        st.session_state.started = True
+    with st.container():
+        st.markdown('<div class="centered-button">', unsafe_allow_html=True)
+        if st.button('スタート'):
+            st.session_state.started = True
+        st.markdown('</div>', unsafe_allow_html=True)
 
 # ゲーム画面
 if st.session_state.started:
@@ -79,7 +87,7 @@ if st.session_state.started:
         selected_word = subset_df.sample().iloc[0]
         
         # クイズ用の選択肢を生成
-        other_words = words_df[words_df['用語'] != selected_word['用語']].sample(2)
+        other_words = words_df[words_df['用語'] != selected_word['用語']].sample(4)
         choices = other_words['用語の意味'].tolist() + [selected_word['用語の意味']]
         np.random.shuffle(choices)
         
