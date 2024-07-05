@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import threading
 
 st.set_page_config(page_title="物理用語ガチャ")
 
@@ -24,7 +25,7 @@ st.markdown(
         background-image: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDJ1MmoyejJ3bzQwNTJ0bDdmaGJhNTNwNHJlNjg4aTF6M3MyMWhxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarwBWrq3CBqqs5G/giphy.gif');
         background-size: cover;
         background-position: center;
-        height: 60vh;
+        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -56,6 +57,19 @@ if 'correct_count' not in st.session_state:
     st.session_state.correct_count = 0
 if 'incorrect_count' not in st.session_state:
     st.session_state.incorrect_count = 0
+if 'timer_expired' not in st.session_state:
+    st.session_state.timer_expired = False
+
+def start_timer():
+    st.session_state.timer_expired = False
+    timer = threading.Timer(10.0, set_timer_expired)  # 制限時間を10秒に設定
+    timer.start()
+
+def set_timer_expired():
+    st.session_state.timer_expired = True
+    st.session_state.quiz_answered = True
+    st.session_state.selected_choice = None  # タイムアウト時は選択なしとする
+    st.experimental_rerun()
 
 # スタート待機画面
 if not st.session_state.started:
@@ -108,6 +122,9 @@ if st.session_state.started:
         st.session_state.correct_answer = selected_word['用語の意味']
         st.session_state.display_meaning = False
         st.session_state.quiz_answered = False
+
+        # タイマーをスタート
+        start_timer()
 
     if 'selected_word' in st.session_state:
         st.header(f"用語名: {st.session_state.selected_word['用語']}")
