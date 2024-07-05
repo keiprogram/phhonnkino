@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import threading
+import time
 
 st.set_page_config(page_title="物理用語ガチャ")
 
@@ -45,6 +46,12 @@ st.markdown(
         border-radius: 5px;
         text-align: center;
     }
+    .timer {
+        font-size: 24px;
+        font-weight: bold;
+        color: #FF0000;
+        text-align: center;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -59,11 +66,21 @@ if 'incorrect_count' not in st.session_state:
     st.session_state.incorrect_count = 0
 if 'timer_expired' not in st.session_state:
     st.session_state.timer_expired = False
+if 'time_left' not in st.session_state:
+    st.session_state.time_left = 10
 
 def start_timer():
     st.session_state.timer_expired = False
-    timer = threading.Timer(10.0, set_timer_expired)  # 制限時間を10秒に設定
-    timer.start()
+    st.session_state.time_left = 10
+    timer_thread = threading.Thread(target=run_timer)
+    timer_thread.start()
+
+def run_timer():
+    while st.session_state.time_left > 0:
+        time.sleep(1)
+        st.session_state.time_left -= 1
+        st.experimental_rerun()
+    set_timer_expired()
 
 def set_timer_expired():
     st.session_state.timer_expired = True
@@ -137,6 +154,9 @@ if st.session_state.started:
         if st.button('回答する'):
             st.session_state.quiz_answered = True
             st.session_state.selected_choice = quiz_answer
+
+        # タイマーの残り時間を表示
+        st.markdown(f'<div class="timer">残り時間: {st.session_state.time_left}秒</div>', unsafe_allow_html=True)
 
         if st.session_state.quiz_answered:
             if st.session_state.selected_choice == st.session_state.correct_answer:
