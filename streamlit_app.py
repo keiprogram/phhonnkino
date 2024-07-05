@@ -26,8 +26,7 @@ st.markdown(
 # 中央揃えスタイルを適用したタイトル
 st.markdown('<h1 class="centered-title">高校物理用語ガチャ</h1>', unsafe_allow_html=True)
 
-# GIFを表示
-st.markdown(f'<img src="{gif_url}" class="circular-image">', unsafe_allow_html=True)
+
 
 # その他の説明
 st.write('物理用語をランダムに表示して、勉強をサポートします！')
