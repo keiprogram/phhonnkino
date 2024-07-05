@@ -4,7 +4,6 @@ import numpy as np
 
 st.set_page_config(page_title="物理用語ガチャ")
 
-
 # CSSを使用してタイトルを中央揃えにするスタイルを適用し、背景色を変更する
 st.markdown(
     """
@@ -20,6 +19,16 @@ st.markdown(
     }
     .stApp {
         background-color: #FCFAF2;
+    }
+    .start-screen {
+        background-image: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDJ1MmoyejJ3bzQwNTJ0bDdmaGJhNTNwNHJlNjg4aTF6M3MyMWhxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarwBWrq3CBqqs5G/giphy.gif');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     .counter-box {
         display: flex;
@@ -40,9 +49,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 中央揃えスタイルを適用したタイトル
-st.markdown('<h1 class="centered-title">高校物理用語ガチャ</h1>', unsafe_allow_html=True)
-
 # 初期状態の設定
 if 'started' not in st.session_state:
     st.session_state.started = False
@@ -53,15 +59,20 @@ if 'incorrect_count' not in st.session_state:
 
 # スタート待機画面
 if not st.session_state.started:
+    st.markdown('<div class="start-screen">', unsafe_allow_html=True)
     st.markdown('<h2 class="centered-title">スタートボタンを押して始めてください</h2>', unsafe_allow_html=True)
     with st.container():
         st.markdown('<div class="centered-button">', unsafe_allow_html=True)
         if st.button('スタート'):
             st.session_state.started = True
         st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # ゲーム画面
 if st.session_state.started:
+    # 中央揃えスタイルを適用したタイトル
+    st.markdown('<h1 class="centered-title">高校物理用語ガチャ</h1>', unsafe_allow_html=True)
+    
     # その他の説明
     st.write('物理用語をランダムに表示して、勉強をサポートします！')
     st.write('範囲は高校で習う物理用語です')
