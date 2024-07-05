@@ -31,7 +31,7 @@ if 'started' not in st.session_state:
 
 # スタート待機画面
 if not st.session_state.started:
-    st.markdown(f'<img src="{gif_url}" class="circular-image">', unsafe_allow_html=True)
+   
     st.markdown('<h2 class="centered-title">スタートボタンを押して始めてください</h2>', unsafe_allow_html=True)
     if st.button('スタート'):
         st.session_state.started = True
