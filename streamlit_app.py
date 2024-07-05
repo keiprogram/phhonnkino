@@ -68,10 +68,13 @@ if 'timer_expired' not in st.session_state:
     st.session_state.timer_expired = False
 if 'time_left' not in st.session_state:
     st.session_state.time_left = 10
+if 'progress_bar' not in st.session_state:
+    st.session_state.progress_bar = 100
 
 def start_timer():
     st.session_state.timer_expired = False
     st.session_state.time_left = 10
+    st.session_state.progress_bar = 100
     timer_thread = threading.Thread(target=run_timer)
     timer_thread.start()
 
@@ -79,6 +82,7 @@ def run_timer():
     while st.session_state.time_left > 0:
         time.sleep(1)
         st.session_state.time_left -= 1
+        st.session_state.progress_bar -= 10
         st.experimental_rerun()
     set_timer_expired()
 
@@ -155,9 +159,8 @@ if st.session_state.started:
             st.session_state.quiz_answered = True
             st.session_state.selected_choice = quiz_answer
 
-        # タイマーの残り時間を表示
-        time_left_percentage = st.session_state.time_left / 10
-        st.progress(time_left_percentage)
+        # プログレスバーでタイマーを視覚化
+        st.progress(st.session_state.progress_bar)
         st.markdown(f'<div class="timer">残り時間: {st.session_state.time_left}秒</div>', unsafe_allow_html=True)
 
         if st.session_state.quiz_answered:
