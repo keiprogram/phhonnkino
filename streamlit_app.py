@@ -156,6 +156,8 @@ if st.session_state.started:
             st.session_state.selected_choice = quiz_answer
 
         # タイマーの残り時間を表示
+        time_left_percentage = st.session_state.time_left / 10
+        st.progress(time_left_percentage)
         st.markdown(f'<div class="timer">残り時間: {st.session_state.time_left}秒</div>', unsafe_allow_html=True)
 
         if st.session_state.quiz_answered:
