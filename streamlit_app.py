@@ -16,6 +16,19 @@ st.markdown(
     .stApp {
         background-color: #FCFAF2;
     }
+    .counter-box {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+    .counter {
+        font-size: 24px;
+        font-weight: bold;
+        color: #0D5661;
+        background-color: #f2f2f2;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
     }
     </style>
     """,
@@ -28,10 +41,13 @@ st.markdown('<h1 class="centered-title">高校物理用語ガチャ</h1>', unsaf
 # 初期状態の設定
 if 'started' not in st.session_state:
     st.session_state.started = False
+if 'correct_count' not in st.session_state:
+    st.session_state.correct_count = 0
+if 'incorrect_count' not in st.session_state:
+    st.session_state.incorrect_count = 0
 
 # スタート待機画面
 if not st.session_state.started:
-   
     st.markdown('<h2 class="centered-title">スタートボタンを押して始めてください</h2>', unsafe_allow_html=True)
     if st.button('スタート'):
         st.session_state.started = True
@@ -89,6 +105,19 @@ if st.session_state.started:
         if st.session_state.quiz_answered:
             if st.session_state.selected_choice == st.session_state.correct_answer:
                 st.success("正解です！", icon="✅")
+                st.session_state.correct_count += 1
             else:
                 st.error("不正解です。", icon="❌")
+                st.session_state.incorrect_count += 1
             st.write(f"正しい意味: {st.session_state.correct_answer}")
+
+    # 正解と不正解の回数を表示
+    st.markdown(
+        f"""
+        <div class="counter-box">
+            <div class="counter">正解: {st.session_state.correct_count}</div>
+            <div class="counter">不正解: {st.session_state.incorrect_count}</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
