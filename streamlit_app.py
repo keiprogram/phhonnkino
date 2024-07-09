@@ -144,8 +144,7 @@ if st.session_state.started:
         st.session_state.display_meaning = False
         st.session_state.quiz_answered = False
 
-        # タイマーをスタート
-        start_timer()
+        
 
     if 'selected_word' in st.session_state:
         st.header(f"用語名: {st.session_state.selected_word['用語']}")
@@ -159,9 +158,7 @@ if st.session_state.started:
             st.session_state.quiz_answered = True
             st.session_state.selected_choice = quiz_answer
 
-        # プログレスバーでタイマーを視覚化
-        st.progress(st.session_state.progress_bar)
-        st.markdown(f'<div class="timer">残り時間: {st.session_state.time_left}秒</div>', unsafe_allow_html=True)
+  
 
         if st.session_state.quiz_answered:
             if st.session_state.selected_choice == st.session_state.correct_answer:
