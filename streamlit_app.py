@@ -17,6 +17,7 @@ st.markdown(
     .centered-button {
         display: flex;
         justify-content: center;
+        align-items: center;
         margin-top: 20px;
     }
     .stApp {
@@ -51,6 +52,17 @@ st.markdown(
         font-weight: bold;
         color: #FF0000;
         text-align: center;
+    }
+    .big-button {
+        font-size: 24px;
+        padding: 20px 40px;
+        border-radius: 10px;
+        background-color: #0D5661;
+        color: #FFFFFF;
+        border: none;
+    }
+    .big-button:hover {
+        background-color: #094A5A;
     }
     </style>
     """,
@@ -98,7 +110,7 @@ if not st.session_state.started:
     st.markdown('<h2 class="centered-title">スタートボタンを押して始めてください</h2>', unsafe_allow_html=True)
     with st.container():
         st.markdown('<div class="centered-button">', unsafe_allow_html=True)
-        if st.button('スタート'):
+        if st.button('スタート', key='start', use_container_width=True, help='クリックして開始'):
             st.session_state.started = True
         st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
@@ -144,7 +156,8 @@ if st.session_state.started:
         st.session_state.display_meaning = False
         st.session_state.quiz_answered = False
 
-        
+        # タイマーをスタート
+        start_timer()
 
     if 'selected_word' in st.session_state:
         st.header(f"用語名: {st.session_state.selected_word['用語']}")
@@ -158,7 +171,9 @@ if st.session_state.started:
             st.session_state.quiz_answered = True
             st.session_state.selected_choice = quiz_answer
 
-  
+        # プログレスバーでタイマーを視覚化
+        st.progress(st.session_state.progress_bar)
+        st.markdown(f'<div class="timer">残り時間: {st.session_state.time_left}秒</div>', unsafe_allow_html=True)
 
         if st.session_state.quiz_answered:
             if st.session_state.selected_choice == st.session_state.correct_answer:
