@@ -12,7 +12,7 @@ st.markdown(
     <style>
     .centered-title {
         text-align: center;
-        color:#0D5661;
+        color:#373C38;
     }
     .centered-button {
         display: flex;
