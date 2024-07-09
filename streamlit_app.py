@@ -140,9 +140,7 @@ if st.session_state.started:
             'SR': 0.2,
             'SSR': 0.1
         }
-        chosen_rarity = np.random.choice(list(rarity_probs.keys()), p=list(rarity_probs.values()))
-        subset_df = words_df[words_df['難易度'] == chosen_rarity]
-        selected_word = subset_df.sample().iloc[0]
+
         
         # クイズ用の選択肢を生成
         other_words = words_df[words_df['用語'] != selected_word['用語']].sample(4)
@@ -158,7 +156,7 @@ if st.session_state.started:
 
     if 'selected_word' in st.session_state:
         st.header(f"用語名: {st.session_state.selected_word['用語']}")
-        st.subheader(f"難易度: {st.session_state.selected_word['難易度']}")
+
 
         # クイズを表示
         st.write("この用語の意味はどれでしょう？")
