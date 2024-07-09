@@ -21,7 +21,7 @@ st.markdown(
         margin-top: 20px;
     }
     .stApp {
-        background-color: #BDC0BA;
+        background-color: 	#494949;
     }
     .start-screen {
         background-image: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDJ1MmoyejJ3bzQwNTJ0bDdmaGJhNTNwNHJlNjg4aTF6M3MyMWhxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarwBWrq3CBqqs5G/giphy.gif');
