@@ -21,7 +21,7 @@ st.markdown(
         margin-top: 20px;
     }
     .stApp {
-        background-color: #FCFAF2;
+        background-color: #BDC0BA;
     }
     .start-screen {
         background-image: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDJ1MmoyejJ3bzQwNTJ0bDdmaGJhNTNwNHJlNjg4aTF6M3MyMWhxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarwBWrq3CBqqs5G/giphy.gif');
@@ -47,14 +47,8 @@ st.markdown(
         border-radius: 5px;
         text-align: center;
     }
-    .timer {
-        font-size: 24px;
-        font-weight: bold;
-        color: #FF0000;
-        text-align: center;
-    }
     .big-button {
-        font-size: 24px;
+        font-size: 40px;
         padding: 20px 40px;
         border-radius: 10px;
         background-color: #0D5661;
