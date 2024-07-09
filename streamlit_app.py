@@ -12,7 +12,7 @@ st.markdown(
     <style>
     .centered-title {
         text-align: center;
-        color:#0D5661;
+        color:#373c38;
     }
     .centered-button {
         display: flex;
@@ -20,7 +20,7 @@ st.markdown(
         margin-top: 20px;
     }
     .stApp {
-        background-color: #FCFAF2;
+        background-color: #BDC0BA;
     }
     .start-screen {
         background-image: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDJ1MmoyejJ3bzQwNTJ0bDdmaGJhNTNwNHJlNjg4aTF6M3MyMWhxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarwBWrq3CBqqs5G/giphy.gif');
@@ -53,7 +53,7 @@ st.markdown(
         text-align: center;
     }
     .big-button {
-        font-size: 24px;
+        font-size: 40px;
         padding: 20px 40px;
         border-radius: 10px;
         background-color: #0D5661;
@@ -158,13 +158,10 @@ if st.session_state.started:
             st.session_state.display_meaning = False
             st.session_state.quiz_answered = False
 
-            # タイマーをスタート
-            start_timer()
         st.markdown('</div>', unsafe_allow_html=True)
 
     if 'selected_word' in st.session_state:
         st.header(f"用語名: {st.session_state.selected_word['用語']}")
-        st.subheader(f"難易度: {st.session_state.selected_word['難易度']}")
 
         # クイズを表示
         st.write("この用語の意味はどれでしょう？")
@@ -177,9 +174,6 @@ if st.session_state.started:
                 st.session_state.selected_choice = quiz_answer
             st.markdown('</div>', unsafe_allow_html=True)
 
-        # プログレスバーでタイマーを視覚化
-        st.progress(st.session_state.progress_bar)
-        st.markdown(f'<div class="timer">残り時間: {st.session_state.time_left}秒</div>', unsafe_allow_html=True)
 
         if st.session_state.quiz_answered:
             if st.session_state.selected_choice == st.session_state.correct_answer:
