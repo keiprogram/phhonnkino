@@ -12,16 +12,15 @@ st.markdown(
     <style>
     .centered-title {
         text-align: center;
-        color:#373C38;
+        color:#0D5661;
     }
     .centered-button {
         display: flex;
         justify-content: center;
-        align-items: center;
         margin-top: 20px;
     }
     .stApp {
-        background-color: #BDC0BA;
+        background-color: #FCFAF2;
     }
     .start-screen {
         background-image: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDJ1MmoyejJ3bzQwNTJ0bDdmaGJhNTNwNHJlNjg4aTF6M3MyMWhxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarwBWrq3CBqqs5G/giphy.gif');
@@ -47,13 +46,20 @@ st.markdown(
         border-radius: 5px;
         text-align: center;
     }
+    .timer {
+        font-size: 24px;
+        font-weight: bold;
+        color: #FF0000;
+        text-align: center;
+    }
     .big-button {
-        font-size: 40px;
+        font-size: 24px;
         padding: 20px 40px;
         border-radius: 10px;
         background-color: #0D5661;
         color: #FFFFFF;
         border: none;
+        cursor: pointer;
     }
     .big-button:hover {
         background-color: #094A5A;
@@ -127,41 +133,53 @@ if st.session_state.started:
     words_df = load_data()
 
     # ガチャ機能
-    if st.button('ガチャを引く！'):
-        rarity_probs = {
-            'N': 0.4,
-            'R': 0.3,
-            'SR': 0.2,
-            'SSR': 0.1
-        }
-        chosen_rarity = np.random.choice(list(rarity_probs.keys()), p=list(rarity_probs.values()))
-        subset_df = words_df[words_df['難易度'] == chosen_rarity]
-        selected_word = subset_df.sample().iloc[0]
-        
-        # クイズ用の選択肢を生成
-        other_words = words_df[words_df['用語'] != selected_word['用語']].sample(4)
-        choices = other_words['用語の意味'].tolist() + [selected_word['用語の意味']]
-        np.random.shuffle(choices)
-        
-        # セッションステートに選択された単語とクイズ選択肢を保存
-        st.session_state.selected_word = selected_word
-        st.session_state.choices = choices
-        st.session_state.correct_answer = selected_word['用語の意味']
-        st.session_state.display_meaning = False
-        st.session_state.quiz_answered = False
+    with st.container():
+        st.markdown('<div class="centered-button">', unsafe_allow_html=True)
+        if st.button('ガチャを引く！', key='gacha', use_container_width=True):
+            rarity_probs = {
+                'N': 0.4,
+                'R': 0.3,
+                'SR': 0.2,
+                'SSR': 0.1
+            }
+            chosen_rarity = np.random.choice(list(rarity_probs.keys()), p=list(rarity_probs.values()))
+            subset_df = words_df[words_df['難易度'] == chosen_rarity]
+            selected_word = subset_df.sample().iloc[0]
+            
+            # クイズ用の選択肢を生成
+            other_words = words_df[words_df['用語'] != selected_word['用語']].sample(4)
+            choices = other_words['用語の意味'].tolist() + [selected_word['用語の意味']]
+            np.random.shuffle(choices)
+            
+            # セッションステートに選択された単語とクイズ選択肢を保存
+            st.session_state.selected_word = selected_word
+            st.session_state.choices = choices
+            st.session_state.correct_answer = selected_word['用語の意味']
+            st.session_state.display_meaning = False
+            st.session_state.quiz_answered = False
+
+            # タイマーをスタート
+            start_timer()
+        st.markdown('</div>', unsafe_allow_html=True)
 
     if 'selected_word' in st.session_state:
         st.header(f"用語名: {st.session_state.selected_word['用語']}")
-
+        st.subheader(f"難易度: {st.session_state.selected_word['難易度']}")
 
         # クイズを表示
         st.write("この用語の意味はどれでしょう？")
         quiz_answer = st.radio("選択肢", st.session_state.choices)
         
-        if st.button('回答する'):
-            st.session_state.quiz_answered = True
-            st.session_state.selected_choice = quiz_answer
+        with st.container():
+            st.markdown('<div class="centered-button">', unsafe_allow_html=True)
+            if st.button('回答する', key='answer', use_container_width=True):
+                st.session_state.quiz_answered = True
+                st.session_state.selected_choice = quiz_answer
+            st.markdown('</div>', unsafe_allow_html=True)
 
+        # プログレスバーでタイマーを視覚化
+        st.progress(st.session_state.progress_bar)
+        st.markdown(f'<div class="timer">残り時間: {st.session_state.time_left}秒</div>', unsafe_allow_html=True)
 
         if st.session_state.quiz_answered:
             if st.session_state.selected_choice == st.session_state.correct_answer:
